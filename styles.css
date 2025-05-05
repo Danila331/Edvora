@@ -1,0 +1,834 @@
+:root {
+    /* Light theme */
+    --primary-color: #007AFF;
+    --secondary-color: #5856D6;
+    --text-color: #1D1D1F;
+    --background-color: #F5F5F7;
+    --card-background: #FFFFFF;
+    --header-background: #FFFFFF;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --primary-color: #007AFF;
+    --secondary-color: #5856D6;
+    --text-color: #FFFFFF;
+    --background-color: #000000;
+    --card-background: #1C1C1E;
+    --header-background: #1C1C1E;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--header-background);
+    z-index: 1000;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    border-bottom: 1px solid var(--border-color);
+    will-change: transform;
+}
+
+.header.scroll-down {
+    transform: translateY(-100%);
+}
+
+.header.scroll-up, .header:not(.scroll-down) {
+    transform: translateY(0);
+}
+
+.nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.cta-button {
+    background: var(--primary-color);
+    color: white !important;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    background: #0066CC;
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 8rem 2rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.hero-content {
+    padding-right: 2rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Features Section */
+.features {
+    padding: 5rem 2rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+/* Chat Interface */
+.chat-interface {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.chat-header {
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.chat-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.chat-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    scroll-behavior: smooth;
+}
+
+.message {
+    max-width: 80%;
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.message.animate {
+    opacity: 1;
+    transform: translateY(0);
+    animation: messageAppear 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.message.bot {
+    align-self: flex-start;
+}
+
+.message.user {
+    align-self: flex-end;
+}
+
+.message-content {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    background: #f0f0f0;
+    word-wrap: break-word;
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.message.bot .message-content {
+    background: var(--primary-color);
+    color: white;
+}
+
+.message.user .message-content {
+    background: var(--secondary-color);
+    color: white;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section Styles */
+section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+/* Problems Section */
+.problems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.problem-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.problem-card:hover {
+    transform: translateY(-5px);
+}
+
+.problem-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* How It Works Section */
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.step {
+    text-align: center;
+    position: relative;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-weight: 600;
+}
+
+/* Advantages Section */
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.advantage-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.advantage-card:hover {
+    transform: translateY(-5px);
+}
+
+.advantage-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Telegram CTA Section */
+.telegram-cta {
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+    border-radius: var(--border-radius);
+    margin: 2rem auto;
+}
+
+.telegram-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    color: var(--primary-color);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.telegram-button:hover {
+    transform: translateY(-2px);
+    background: #f8f8f8;
+}
+
+/* Footer */
+.footer {
+    background: var(--card-background);
+    padding: 3rem 2rem 1rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-social a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+        overflow-x: hidden;
+        font-size: 0.95rem;
+    }
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 6rem 0.5rem 2rem;
+        gap: 2rem;
+        justify-items: center;
+        max-width: 100vw;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+    h1, .hero h1 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    h2, section h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1.2rem;
+        text-align: center;
+    }
+    h3, .feature-card h3, .problem-card h3, .advantage-card h3, .step h3, .chat-header h3 {
+        font-size: 1.1rem;
+    }
+    .hero p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+    .hero-content {
+        padding: 0 0.5rem;
+        max-width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        box-sizing: border-box;
+        word-break: break-word;
+    }
+    .chat-interface {
+        height: 420px;
+        margin: 0 auto 1.5rem auto;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 16px;
+        box-sizing: border-box;
+    }
+    .chat-messages, .message-content {
+        font-size: 0.95rem;
+    }
+    .feature-card p,
+    .problem-card p,
+    .advantage-card p {
+        font-size: 0.92rem;
+    }
+    .step p {
+        font-size: 0.92rem;
+    }
+    .step-number {
+        font-size: 1rem;
+        width: 32px;
+        height: 32px;
+    }
+    .cta-button, .telegram-button {
+        font-size: 0.98rem;
+        padding: 0.7rem 1.2rem;
+    }
+    .nav-links a {
+        font-size: 0.98rem;
+    }
+    .footer-logo {
+        font-size: 1.1rem;
+    }
+    .footer-links a {
+        font-size: 0.95rem;
+    }
+    .footer-bottom {
+        font-size: 0.9rem;
+    }
+    section h2 {
+        font-size: 1.1rem;
+        margin-bottom: 1.2rem;
+        text-align: center;
+    }
+    .theme-toggle {
+        bottom: 5.5rem;
+        right: 1rem;
+        left: auto;
+        position: fixed;
+        z-index: 2000;
+    }
+    .features-grid,
+    .problems-grid,
+    .advantages-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0;
+        max-width: 100%;
+        margin: 0 auto;
+        justify-items: center;
+    }
+    .feature-card,
+    .problem-card,
+    .advantage-card {
+        padding: 1.2rem 0.7rem;
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 370px;
+        box-sizing: border-box;
+    }
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0;
+        max-width: 100%;
+        margin: 0 auto;
+        justify-items: center;
+    }
+    .step {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 370px;
+    }
+    .telegram-cta {
+        margin: 1.5rem auto 1.5rem auto;
+        padding: 2rem 1rem;
+        text-align: center;
+        border-radius: 16px;
+        max-width: 420px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .footer {
+        padding: 2rem 0.5rem 1rem;
+        width: 100vw;
+        min-width: 100vw;
+        box-sizing: border-box;
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 0.5rem;
+    }
+    .footer-links {
+        align-items: center;
+    }
+    .footer-social {
+        justify-content: center;
+    }
+    .footer-bottom {
+        padding-bottom: 1rem;
+    }
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--header-background);
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--shadow);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .feature-card,
+    .problem-card,
+    .advantage-card,
+    .step {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .feature-card.animate,
+    .problem-card.animate,
+    .advantage-card.animate,
+    .step.animate {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .message {
+        max-width: 90%;
+    }
+    .message.animate {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tablet Design */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .advantages-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 1rem;
+    }
+
+    .chat-interface {
+        max-width: 100%;
+    }
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--primary-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Dark theme specific styles */
+[data-theme="dark"] .message.bot .message-content {
+    background: #2C2C2E;
+    color: white;
+}
+
+[data-theme="dark"] .message.user .message-content {
+    background: var(--primary-color);
+    color: white;
+}
+
+[data-theme="dark"] .chat-interface {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .problem-card,
+[data-theme="dark"] .advantage-card {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .telegram-cta {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .telegram-button {
+    background: var(--primary-color);
+    color: white;
+}
+
+[data-theme="dark"] .telegram-button:hover {
+    background: #0066CC;
+}
+
+/* Animations */
+.animate {
+    animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+}
+
+section.animate {
+    opacity: 1;
+    transform: none;
+}
+
+/* Staggered animation for cards and steps */
+.features-grid .feature-card.animate,
+.problems-grid .problem-card.animate,
+.advantages-grid .advantage-card.animate,
+.steps .step.animate {
+    animation-delay: var(--stagger-delay, 0s);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading Animation */
+img {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img.loaded {
+    opacity: 1;
+}
+
+/* Smooth fade-in animation for cards and steps */
+.feature-card,
+.problem-card,
+.advantage-card,
+.step {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+.feature-card.animate,
+.problem-card.animate,
+.advantage-card.animate,
+.step.animate {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+@media (max-width: 768px) {
+    section {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    section.animate {
+        opacity: 1;
+        transform: none;
+    }
+    .feature-card,
+    .problem-card,
+    .advantage-card,
+    .step {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .feature-card.animate,
+    .problem-card.animate,
+    .advantage-card.animate,
+    .step.animate {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+} 
